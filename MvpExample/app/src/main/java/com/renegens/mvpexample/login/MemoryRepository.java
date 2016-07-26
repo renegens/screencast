@@ -2,30 +2,29 @@ package com.renegens.mvpexample.login;
 
 public class MemoryRepository implements LoginRepository {
 
-    private UserModel userModel;
+    private User user;
 
     @Override
-    public UserModel getUser() {
+    public User getUser() {
 
-        if (userModel == null ) {
-            UserModel user = new UserModel();
-            user.setFirstName("Fox");
-            user.setLastName("Mulder");
+        if (user == null) {
+            User user = new User("Fox", "Mulder");
             user.setId(0);
             return user;
-        }else {
-            return userModel;
+        } else {
+            return user;
         }
-
-
-
 
     }
 
     @Override
-    public void saveUser(UserModel userModel) {
+    public void saveUser(User user) {
 
-        this.userModel = userModel;
+        if (user == null) {
+            user = getUser();
+        }
+
+        this.user = user;
 
     }
 }

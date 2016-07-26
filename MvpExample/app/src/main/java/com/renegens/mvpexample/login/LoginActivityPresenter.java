@@ -6,12 +6,11 @@ public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
 
     @Nullable
     private LoginActivityMVP.View view;
-    private LoginRepository repository;
-    private UserModel userModel;
+    private LoginActivityMVP.Model model;
 
-
-
-
+    public LoginActivityPresenter(LoginActivityMVP.Model model) {
+        this.model = model;
+    }
 
     @Override
     public void setView(LoginActivityMVP.View view) {
@@ -24,24 +23,49 @@ public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
     public void loginButtonClicked() {
 
         if (view != null) {
-            String fname = view.getFirstName();
-            String lname = view.getLastName();
+            if (view.getFirstName().trim().equals("") || view.getLastName().trim().equals("")) {
+                view.showInputError();
+            } else {
 
-            repository.saveUser(new UserModel());
+                model.createUser(view.getFirstName(), view.getLastName());
+                view.showUserSavedMessage();
+
+            }
+
         }
-
-
 
     }
 
     @Override
     public void getCurrentUser() {
 
-        UserModel userModel = repository.getUser();
+        User user = model.getUser();
+
+        if (user == null) {
+            if (view != null) {
+                view.showUserNotAvailable();
+            }
+        } else {
+            if (view != null) {
+                view.setFirstName(user.getFirstName());
+                view.setLastName(user.getLastName());
+            }
+        }
+
+    }
+
+    @Override
+    public void saveUser() {
 
         if (view != null) {
-            view.setFirstName(userModel.getFirstName());
-            view.setLastName(userModel.getLastName());
+            if (view.getFirstName().trim().equals("") || view.getLastName().trim().equals("")) {
+                view.showInputError();
+            } else {
+
+                model.createUser(view.getFirstName(), view.getLastName());
+                view.showUserSavedMessage();
+
+            }
         }
 
     }

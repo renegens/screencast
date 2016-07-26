@@ -14,6 +14,8 @@ public interface LoginActivityMVP {
         void setFirstName(String firstName);
 
         void setLastName(String lastName);
+
+        void showUserSavedMessage();
     }
 
     interface Presenter {
@@ -23,9 +25,15 @@ public interface LoginActivityMVP {
         void loginButtonClicked();
 
         void getCurrentUser();
+
+        void saveUser();
     }
 
     interface Model {
+
+        void createUser(String name, String lastName);
+
+        User getUser();
 
 
 

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.renegens.mvpexample.R;
+import com.renegens.mvpexample.root.App;
 
 import javax.inject.Inject;
 
@@ -25,6 +26,8 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ((App) getApplication()).getComponent().inject(this);
 
         firstName = (EditText) findViewById(R.id.loginActivity_firstName_editText);
         lastName = (EditText) findViewById(R.id.loginActivity_lastName_editText);
@@ -73,6 +76,22 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     @Override
     public void showInputError() {
         Toast.makeText(this, "First Name or last name cannot be empty", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        this.firstName.setText(firstName);
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        this.lastName.setText(lastName);
+    }
+
+    @Override
+    public void showUserSavedMessage() {
+        Toast.makeText(this, "User saved successfully", Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -2,7 +2,7 @@ package com.renegens.mvpexample.login;
 
 public interface LoginRepository {
 
-    UserModel getUser();
+    User getUser();
 
-    void saveUser(UserModel userModel);
+    void saveUser(User user);
 }
