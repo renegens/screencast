@@ -6,7 +6,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
-        applicationId "com.tetraandroid.retrofitexample"
+        applicationId "com.renegens.retrofitexample"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
