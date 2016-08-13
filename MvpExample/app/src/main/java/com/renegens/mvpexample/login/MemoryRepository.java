@@ -2,14 +2,13 @@ package com.renegens.mvpexample.login;
 
 public class MemoryRepository implements LoginRepository {
 
-    private User user;
+    private User user = null;
 
     @Override
     public User getUser() {
 
         if (user == null) {
             User user = new User("Fox", "Mulder");
-            user.setId(0);
             return user;
         } else {
             return user;

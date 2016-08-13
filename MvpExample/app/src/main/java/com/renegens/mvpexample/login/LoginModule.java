@@ -1,11 +1,9 @@
 package com.renegens.mvpexample.login;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
-
-/**
- * Created by renegens on 26/07/16.
- */
 
 @Module
 public class LoginModule {
@@ -20,6 +18,7 @@ public class LoginModule {
         return new LoginModel(repository);
     }
 
+    @Singleton
     @Provides
     public LoginRepository provideLoginRepository(){
         return new MemoryRepository();

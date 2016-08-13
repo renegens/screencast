@@ -8,7 +8,7 @@ public interface LoginActivityMVP {
         String getLastName();
 
         void showUserNotAvailable();
-        void showUserAvailable();
+
         void showInputError();
 
         void setFirstName(String firstName);
@@ -25,8 +25,6 @@ public interface LoginActivityMVP {
         void loginButtonClicked();
 
         void getCurrentUser();
-
-        void saveUser();
     }
 
     interface Model {
